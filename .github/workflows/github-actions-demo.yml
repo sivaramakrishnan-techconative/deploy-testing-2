@@ -13,9 +13,9 @@ jobs:
           node-version: 18
       - run: npm i
       - run: npm run build 
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: FirebaseExtended/action-hosting-deploy@latest
         with:
-          repoToken: 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
-          firebaseServiceAccount: AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU
+          repoToken: "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"
+          firebaseServiceAccount: "AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU"
           projectId: deployment-testing-e31c4
           channelId: live
