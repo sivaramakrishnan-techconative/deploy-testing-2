@@ -28,3 +28,6 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU
+          repoToken: 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 
+          projectId: deployment-testing-e31c4
+          channelId: live
