@@ -23,7 +23,8 @@ jobs:
         run: npm run build
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
-        with: 
+        with:
+          repoToken: ${{ secrets.TOKEN }}
           projectId: deployment-testing-e31c4
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks # Enable the experimental feature
