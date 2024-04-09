@@ -27,21 +27,7 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v13.4.0
         with:
-          FIREBASE_CLI_EXPERIMENTS: webframeworks # Enable the experimental feature
-          FIREBASE_TOKEN: AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU
-          repoToken: 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
-          firebaseServiceAccount:
-            {
-              "type": "service_account",
-              "project_id": "deployment-testing-e31c4",
-              "private_key_id": "ccdeb956cf531f0a292a1e77cb8e92a2493ace24",
-              "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/QXPWmqVg0AyF\nwk/OLYw+kDf13U65iDPdK0M3kuIfxY+/K5VIum5AzCus4AAwqR5arKRg7Nit+LVY\nHpZ4xdHH/xVd58SAItu76rUXTyS3qaTiHa++p9tuwfofaB+k97yjaoCYyoQPVPvp\nDLEwIwU0DyVUDZqNAmMRQmqEqV/GWT2emyBryJAMoXqmXvhGPmG7Y8N2wmNwkjkA\n9r8dL+8973vqnK/RniAe9sE+MJOdfWrCfjFhih19eQC75TeWltEjJJ7CsTlTRkyj\njA2Yp6LSvzqjGlVcLFIik4+6r6K0j+IWqfoICjNWtkSmDBiMYwFLntlO896xlVW7\n3uXPFvNfAgMBAAECggEAG7jFrPJBd7pFoRBnN5VhN02kLt5jI4AF3yWphTakfBfL\ncYREYS7/Us5v+ODcZjE9QHC3FYLUbXMX+1aDrQHPbyke1GZcac5OV1ClQGRXssoY\n0jBHYbU8QzOZU6VotiVf5w1FkoqtgE4V2Ck0zatl0llCVIqcP5rRopYj5mgT2ntN\nhLbLgsJpcIl4KoNPkhidKwIXc3bBxwCbg5AnwNZrvP1ddoQUkwlyXbed6rda2frE\nXm+WY4Xta7Ja5fDNh68JZUESO1xXwr/Jl0mri/MazF2/r8VSnGBZwKvr2gHm6rF3\nWkeuWE192dSunMCBg6CNdJlYWapqSPIj0DlXdYim0QKBgQD+SkQCwC+Ihbjr1HFr\nzED9ASPpclIhMT6B4NhbMjjnDhvnmYBpR5/5uVVuDMbRTHr/BIzcyQ1PPJW1Mnzz\nVyHnYotP7YPVYr+gzfEtaVVTN6UmQuqxHVKgBwmiIyi613SctkdV8v0TdxMLq2Av\n+YhcW0mISQBi5SmcsUP9V/TubQKBgQDAiq31VI3CXhnIwuwb89A/EAo10YjklAbz\nLolX6FrtJUlaeA4yVTm97aJy4Fn14RvDAdaJ46rdDLz1CiSaL1f+kTo6EfWX2a9t\nZBQkkwjBWJOMJrP8896db9hIThaAnTDGeGVtRJOB4R1KcIkQnd2UXGVsro+caAhH\nDeE33sbZewKBgCgurBiTLe+w0cvSQin6mLpiF76n5fqAwZPcZ9PhV8SLIjWyt+vq\n+YiIlMtTEYe5QiZSHcA1tPi0ZiO/2qbJOf5KQCFdMtvhQs6yPE4kuurvfBVTtapP\nK+NFuWv5ilIcAb1RwGwAfaU5x7SsXAK4t6eAdVonzvvRooW0LT43S+jxAoGARlzn\nwbYKsDNPXOzO+FAblFA6Svyt+EqYV5p0GqoRQITVz7f8CCzZEy2apjyS46ZGTPeI\n/Y8zy+Bx1WLFiYsvrxpHmx0hEUM+Ns3SBqOtGWtTUG58bD565jIPai0PUCUhxAYP\nmuTquxYXbDLABFCMv0Ec16DbXp8uFzldStug860CgYEA0Rp7ky/yIAxb49XtDOcM\nF/3HN6M+oPomhqKPPsdPh+aLlIuC9ZqDJ9efZt9XkpyduwfenHizqCEhPU8SUxuw\ngod0Fc606Qb8QntQZbB26A5Xdrq0jSO7iDmy8kkk1QZ6iLXmSTzqkWyZIHjIFecF\nqiXA1YyTIDDZvqH/4FD2QCk=\n-----END PRIVATE KEY-----\n",
-              "client_email": "firebase-adminsdk-308ne@deployment-testing-e31c4.iam.gserviceaccount.com",
-              "client_id": "106892664848630949039",
-              "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-              "token_uri": "https://oauth2.googleapis.com/token",
-              "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-              "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-308ne%40deployment-testing-e31c4.iam.gserviceaccount.com",
-              "universe_domain": "googleapis.com",
-            }
+          repoToken: ${{ secrets.TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+          projectId: deployment-testing-e31c4
           args: deploy --only hosting:deployment-testing-e31c4
