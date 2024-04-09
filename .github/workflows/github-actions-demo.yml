@@ -20,7 +20,7 @@ jobs:
         run: npm install
       - name: Build
         env:
-          NEXT_PUBLIC_SUPABASE_URL: AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU 
+         FIREBASE_TOKEN: AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU 
         run: npm run build && npm run export
 
       - name: Deploy to Firebase
