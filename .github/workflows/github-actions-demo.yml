@@ -1,8 +1,11 @@
-name: Deploy to Firebase Hosting
+name: Firebase Hosting Deployment
+
+# Trigger the workflow on push or pull request to specific branches
 on:
   push:
     branches:
-      - main
+      - master
+      - dev
 
 jobs:
   deploy:
@@ -10,20 +13,18 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "18"
-
+          node-version: "14" # Specify your Node.js version here
       - name: Install Dependencies
         run: npm install
       - name: Build
-        env:
-         FIREBASE_TOKEN: AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU 
-        run: npm run build && npm run export
-
+        run: npm run build
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@v13.4.0
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          args: deploy --only hosting:deployment-testing-e31c4
+          projectId: deployment-testing-e31c4
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks # Enable the experimental feature
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
