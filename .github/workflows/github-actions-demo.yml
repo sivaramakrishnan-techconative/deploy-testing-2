@@ -1,8 +1,10 @@
 name: Build and Deploy
+
 on:
   push:
     branches:
       - master
+      - dev
 
 jobs:
   build:
@@ -10,24 +12,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
       - name: Install Dependencies
         run: npm install
       - name: Build
-        run: npm run build 
+        run: npm run build
+
   deploy:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master 
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting
+        uses: actions/checkout@v2
+
+      # Deploy to Production Environment
+      - name: Deploy to Firebase (Production)
+        if: github.ref == 'refs/heads/master'
+        run: firebase deploy --only hosting:prod --token AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU
         env:
           FIREBASE_TOKEN: AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU
-          repoToken: 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 
-          projectId: deployment-testing-e31c4
-          channelId: live
+
+      # Deploy to Development Environment
+      - name: Deploy to Firebase (Development)
+        if: github.ref == 'refs/heads/dev'
+        run: firebase deploy --only hosting:dev --token AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU
+        env:
+          FIREBASE_TOKEN: AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU

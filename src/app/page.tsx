@@ -2,6 +2,14 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
+  function addZero(i: any) {
+    if (i < 10) { i = "0" + i }
+    return i;
+  }
+  const d = new Date();
+  let h = addZero(d.getUTCHours());
+  let m = addZero(d.getUTCMinutes());
+  let s = addZero(d.getUTCSeconds());
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -11,7 +19,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By NEW DESIGN
+            By NEW PROD DESIGN {h + ":" + m + ":" + s}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"

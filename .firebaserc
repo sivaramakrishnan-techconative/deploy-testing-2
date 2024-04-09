@@ -1,5 +1,6 @@
 {
   "projects": {
+    "prod": "deployment-testing-e31c4",
     "default": "deployment-testing-e31c4"
   }
 }
