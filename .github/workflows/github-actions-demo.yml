@@ -29,6 +29,7 @@ jobs:
       # Deploy to Production Environment
       - name: Deploy to Firebase (Production)
         if: github.ref == 'refs/heads/master'
+        run: npm i && npm run build && npm run export
         run: firebase deploy --only hosting:prod --token AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU
         env:
           FIREBASE_TOKEN: AIzaSyAW_g8c4M9c3GMFL3Ui-bVnukWhZdHHCDU
